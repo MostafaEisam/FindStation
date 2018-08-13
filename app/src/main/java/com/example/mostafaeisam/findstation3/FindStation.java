@@ -7,8 +7,8 @@ import com.example.mostafaeisam.findstation3.classes.SortStations;
 
 public class FindStation extends Application {
 
-    private static FilterStations filterStations;
-    private static SortStations sortStations;
+    public static FilterStations filterStations;
+    public static SortStations sortStations;
 
 
     public static FilterStations getFilterStations() {
@@ -30,6 +30,6 @@ public class FindStation extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
     }
+
 }

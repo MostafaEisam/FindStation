@@ -479,6 +479,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         FindStation findStation = new FindStation();
         FilterStations filterStations = findStation.getFilterStations();
         SortStations sortStations = findStation.getSortStations();
+
         //Toast.makeText(this, ""+filterStations, Toast.LENGTH_SHORT).show();
         if (!mFilterStationList.isEmpty()) {
             mFilterStationList.clear();
@@ -489,7 +490,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             for (int x = 0; x < mStationsList.size(); x++) {
                 Station station = mStationsList.get(x);
-                if (filterStations.isCheckedGas91() == true && station.isGas91Available() == true) {
+                if (filterStations.isCheckedGas91() && station.isGas91Available()) {
                     mFilterStationList.add(station);
                 } else if (filterStations.isCheckedGas95() == true && station.isGas95Available() == true) {
                     mFilterStationList.add(station);
@@ -523,7 +524,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
             if (sortStations.isByPriceHighest()) {
-
                 if (!mFilterStationList.isEmpty()) {
                     //descending تنازلى
                     Collections.sort(mFilterStationList, new Comparator<Station>() {
@@ -547,7 +547,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
 
             } else if (sortStations.isByPriceLoweset()) {
-
                 if (!mFilterStationList.isEmpty()) {
                     Collections.sort(mFilterStationList, new Comparator<Station>() {
                         @Override
@@ -569,7 +568,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
 
             } else if (sortStations.isByStarsHighest()) {
-
                 if (!mFilterStationList.isEmpty()) {
                     Collections.sort(mFilterStationList, new Comparator<Station>() {
                         @Override
@@ -591,7 +589,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
 
             } else if (sortStations.isByStarsLowest()) {
-
                 if (!mFilterStationList.isEmpty()) {
                     Collections.sort(mFilterStationList, new Comparator<Station>() {
                         @Override
@@ -613,7 +610,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
 
             } else if (sortStations.isByNamesfromAtoZ()) {
-
                 if (!mFilterStationList.isEmpty()) {
                     Collections.sort(mFilterStationList, new Comparator<Station>() {
                         @Override
@@ -635,7 +631,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
 
             } else if (sortStations.isByNamesfromZtoA()) {
-
                 if (!mFilterStationList.isEmpty()) {
                     Collections.sort(mFilterStationList, new Comparator<Station>() {
                         @Override
@@ -656,7 +651,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mRvAdapter.notifyDataSetChanged();
                 }
 
-            }else if (sortStations.isByNearest()) {
+            } else if (sortStations.isByNearest()) {
                 if (!mFilterStationList.isEmpty()) {
                     Collections.sort(mFilterStationList, new Comparator<Station>() {
                         @Override
@@ -688,7 +683,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     });
                     mRvAdapter.notifyDataSetChanged();
                 }
-            }else if (sortStations.isByFarthest()){
+            } else if (sortStations.isByFarthest()) {
                 if (!mFilterStationList.isEmpty()) {
                     Collections.sort(mFilterStationList, new Comparator<Station>() {
                         @Override
@@ -722,16 +717,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         }
+
+       // findStation.setReturnedFilterStations(returnedFilterStations);
+       // findStation.setReturnedSortStations(returnedSortStations);
     }
 
     public double distance(double fromLat, double fromLon, double toLat, double toLon) {
         double radius = 6378137;   // approximate Earth radius, *in meters*
         double deltaLat = toLat - fromLat;
         double deltaLon = toLon - fromLon;
-        double angle = 2 * Math.asin( Math.sqrt(
-                Math.pow(Math.sin(deltaLat/2), 2) +
+        double angle = 2 * Math.asin(Math.sqrt(
+                Math.pow(Math.sin(deltaLat / 2), 2) +
                         Math.cos(fromLat) * Math.cos(toLat) *
-                                Math.pow(Math.sin(deltaLon/2), 2) ) );
+                                Math.pow(Math.sin(deltaLon / 2), 2)));
         return radius * angle;
     }
 
@@ -797,6 +795,5 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean ismSwipeIsFirstTime() {
         return mSwipeIsFirstTime;
     }
-
 
 }
