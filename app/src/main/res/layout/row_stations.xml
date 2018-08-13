@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv_rowStations"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="2.25">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.25">
+
+            <ImageView
+                android:id="@+id/iv_stationImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:src="@drawable/light"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                />
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:layout_toEndOf="@+id/iv_stationImage"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textSize="12sp"
+                android:layout_toEndOf="@+id/iv_stationImage"
+                android:layout_toStartOf="@+id/iv_navigationButton"
+                android:layout_below="@+id/tv_title"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"/>
+
+            <ImageView
+                android:id="@+id/iv_navigationButton"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/navigation_btn"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="0.10"
+            >
+
+            <LinearLayout
+                android:id="@+id/linearlayout_gasInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/gas91"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:text="91"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray"></View>
+
+                    <TextView
+                        android:id="@+id/tv_gas91Price"
+                        android:layout_width="0dp"
+                        android:text="0.99"
+                        android:textSize="12sp"
+                        android:textColor="@color/priceColor"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_gas91Currency"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="LE"
+                        android:textSize="12sp"
+                        android:textColor="@color/priceColor"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/gas95"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:text="95"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray"></View>
+
+                    <TextView
+                        android:id="@+id/tv_gas95Price"
+                        android:layout_width="0dp"
+                        android:text="0.99"
+                        android:textSize="12sp"
+                        android:textColor="@color/priceColor"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_gas95Currency"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="LE"
+                        android:textSize="12sp"
+                        android:textColor="@color/priceColor"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/dsl"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="DSL"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray"></View>
+
+                    <TextView
+                        android:id="@+id/tv_dslPrice"
+                        android:layout_width="0dp"
+                        android:text="0.99"
+                        android:textSize="12sp"
+                        android:textColor="@color/priceColor"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_dslCurrency"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="LE"
+                        android:textSize="12sp"
+                        android:textColor="@color/priceColor"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <RatingBar
+                android:id="@+id/RATINGinitialvalueratingID"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearlayout_gasInfo"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="3dp"
+                android:isIndicator="true"
+                android:clickable="false"
+                android:focusableInTouchMode="false"
+                android:focusable="false"
+                android:numStars="5" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.75"
+            android:weightSum="9"
+            android:orientation="horizontal"
+            android:layout_marginLeft="50dp">
+
+            <ImageView
+                android:id="@+id/iv_hasRestaurant"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/resturant_ico"/>
+
+            <ImageView
+                android:id="@+id/iv_hasMasjid"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/mosque_ico"/>
+
+            <ImageView
+                android:id="@+id/iv_hasCafe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/coffee_ico"/>
+
+            <ImageView
+                android:id="@+id/iv_hasLadiesWC"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/toilet_female"/>
+
+            <ImageView
+                android:id="@+id/iv_hasMensWC"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/toilet_male"/>
+
+            <ImageView
+                android:id="@+id/iv_hasHotel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/hotel_ico"/>
+
+            <ImageView
+                android:id="@+id/iv_hasATM"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/atm"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

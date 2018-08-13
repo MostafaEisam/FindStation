@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="6"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:weightSum="9">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Nearest"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Farthest"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Price Highest"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Price Lowest"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Stars Highest"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Stars Lowest"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Names (A-Z)"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Names (Z-A)"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                ></TextView>
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/rg_sort"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:weightSum="9"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_nearest"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:buttonTint="@color/priceColor"
+                ></RadioButton>
+
+            <RadioButton
+                android:id="@+id/rb_farthest"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:buttonTint="@color/priceColor"
+                ></RadioButton>
+
+            <RadioButton
+                android:id="@+id/rb_priceHighest"
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:buttonTint="@color/priceColor"
+                ></RadioButton>
+
+            <RadioButton
+                android:id="@+id/rb_priceLowest"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:buttonTint="@color/priceColor"
+                ></RadioButton>
+
+            <RadioButton
+                android:id="@+id/rb_starsHighest"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:buttonTint="@color/priceColor"
+                ></RadioButton>
+
+            <RadioButton
+                android:id="@+id/rb_starsLowest"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:buttonTint="@color/priceColor"
+                ></RadioButton>
+
+            <RadioButton
+                android:id="@+id/rb_namesFromAtoZ"
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:buttonTint="@color/priceColor"
+                ></RadioButton>
+
+            <RadioButton
+                android:id="@+id/rb_namesFromZtoA"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:buttonTint="@color/priceColor"
+                ></RadioButton>
+
+        </RadioGroup>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
