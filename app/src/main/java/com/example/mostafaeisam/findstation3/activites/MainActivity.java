@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.mostafaeisam.findstation3.FindStation;
 import com.example.mostafaeisam.findstation3.adapters.stationsRecyclerViewAapter;
@@ -329,20 +330,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.filter:
-                if (!mFilterStationList.isEmpty()) {
-                    FindStation findStation = new FindStation();
-                    FilterStations filterStations = findStation.getFilterStations();
-                    SortStations sortStations = findStation.getSortStations();
-                    //Toast.makeText(this, ""+filterStations, Toast.LENGTH_SHORT).show();
-                    Intent filterActivity = new Intent(MainActivity.this, FilterActivity.class);
-                    filterActivity.putExtra("secondClick", String.valueOf(filterStations));
-                    startActivity(filterActivity);
-                } else {
-                    Intent filterActivity = new Intent(MainActivity.this, FilterActivity.class);
-                    startActivityForResult(filterActivity, 2);
-                    setFirstTimeClickedFilter(false);
-                }
-
+                Intent filterActivity = new Intent(MainActivity.this, FilterActivity.class);
+                startActivityForResult(filterActivity, 2);
+                setFirstTimeClickedFilter(false);
 
                 break;
             case R.id.swipe:
@@ -480,246 +470,284 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         FilterStations filterStations = findStation.getFilterStations();
         SortStations sortStations = findStation.getSortStations();
 
-        //Toast.makeText(this, ""+filterStations, Toast.LENGTH_SHORT).show();
-        if (!mFilterStationList.isEmpty()) {
-            mFilterStationList.clear();
-        }
-
         if (requestCode == 2 && resultCode == RESULT_OK) {
             //mFilterStationList.clear();
+            if (!mFilterStationList.isEmpty()) {
+                mFilterStationList.clear();
+            }
 
-            for (int x = 0; x < mStationsList.size(); x++) {
-                Station station = mStationsList.get(x);
-                if (filterStations.isCheckedGas91() && station.isGas91Available()) {
-                    mFilterStationList.add(station);
-                } else if (filterStations.isCheckedGas95() == true && station.isGas95Available() == true) {
-                    mFilterStationList.add(station);
-                } else if (filterStations.isCheckedDsl() == true && station.isDieselAvailable() == true) {
-                    mFilterStationList.add(station);
-                } else if (filterStations.isCheckedRestaurant() == true && station.isHasRestaurant() == true) {
-                    mFilterStationList.add(station);
-                } else if (filterStations.isCheckedMosque() == true && station.isHasMasjid() == true) {
-                    mFilterStationList.add(station);
-                } else if (filterStations.isCheckedCoffee() == true && station.isHasCafe() == true) {
-                    mFilterStationList.add(station);
-                } else if (filterStations.isCheckedWomenToilet() == true && station.isHasLadiesWC() == true) {
-                    mFilterStationList.add(station);
-                } else if (filterStations.isCheckedMenToilet() == true && station.isHasMensWC()) {
-                    mFilterStationList.add(station);
-                } else if (filterStations.isCheckedHotel() == true && station.isHasHotel() == true) {
-                    mFilterStationList.add(station);
-                } else if (filterStations.isCheckedATM() == true && station.isHasATM()) {
-                    mFilterStationList.add(station);
+            if (filterStations != null) {
+                for (int x = 0; x < mStationsList.size(); x++) {
+                    Station station = mStationsList.get(x);
+
+                    if (filterStations.isCheckedGas91() && station.isGas91Available()) {
+                        if (!mFilterStationList.contains(station)){
+                            mFilterStationList.add(station);
+                        }
+
+                    }
+
+                    if (filterStations.isCheckedGas95() && station.isGas95Available()) {
+                        if (!mFilterStationList.contains(station)){
+                            mFilterStationList.add(station);
+                        }
+                    }
+
+                    if (filterStations.isCheckedDsl() && station.isDieselAvailable()) {
+                        if (!mFilterStationList.contains(station)){
+                            mFilterStationList.add(station);
+                        }
+                    }
+
+                    if (filterStations.isCheckedRestaurant() && station.isHasRestaurant()) {
+                        if (!mFilterStationList.contains(station)){
+                            mFilterStationList.add(station);
+                        }
+                    }
+                    if (filterStations.isCheckedMosque() && station.isHasMasjid()) {
+                        if (!mFilterStationList.contains(station)){
+                            mFilterStationList.add(station);
+                        }
+                    }
+
+                    if (filterStations.isCheckedCoffee() && station.isHasCafe()) {
+                        if (!mFilterStationList.contains(station)){
+                            mFilterStationList.add(station);
+                        }
+                    }
+
+                    if (filterStations.isCheckedWomenToilet() && station.isHasLadiesWC()) {
+                        if (!mFilterStationList.contains(station)){
+                            mFilterStationList.add(station);
+                        }
+                    }
+
+                    if (filterStations.isCheckedMenToilet() && station.isHasMensWC()) {
+                        if (!mFilterStationList.contains(station)){
+                            mFilterStationList.add(station);
+                        }
+                    }
+
+                    if (filterStations.isCheckedHotel() && station.isHasHotel()) {
+                        if (!mFilterStationList.contains(station)){
+                            mFilterStationList.add(station);
+                        }
+                    }
+
+                    if (filterStations.isCheckedATM() && station.isHasATM()) {
+                        if (!mFilterStationList.contains(station)){
+                            mFilterStationList.add(station);
+                        }
+                    }
+                }
+            }
+
+
+            if (sortStations != null ) {
+                if (sortStations.isByPriceHighest()) {
+                    if (!mFilterStationList.isEmpty()) {
+                        //descending تنازلى
+                        Collections.sort(mFilterStationList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return Double.compare(o2.getGas91Price(), o1.getGas91Price());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    } else {
+                        //descending تنازلى
+                        Collections.sort(mStationsList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return Double.compare(o2.getGas91Price(), o1.getGas91Price());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    }
+
+                } else if (sortStations.isByPriceLoweset()) {
+                    if (!mFilterStationList.isEmpty()) {
+                        Collections.sort(mFilterStationList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return Double.compare(o1.getGas91Price(), o2.getGas91Price());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    } else {
+                        Collections.sort(mStationsList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return Double.compare(o1.getGas91Price(), o2.getGas91Price());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    }
+
+                } else if (sortStations.isByStarsHighest()) {
+                    if (!mFilterStationList.isEmpty()) {
+                        Collections.sort(mFilterStationList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return Double.compare(o2.getRating(), o1.getRating());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    } else {
+                        Collections.sort(mStationsList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return Double.compare(o2.getRating(), o1.getRating());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    }
+
+                } else if (sortStations.isByStarsLowest()) {
+                    if (!mFilterStationList.isEmpty()) {
+                        Collections.sort(mFilterStationList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return Double.compare(o1.getRating(), o2.getRating());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    } else {
+                        Collections.sort(mStationsList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return Double.compare(o1.getRating(), o2.getRating());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    }
+
+                } else if (sortStations.isByNamesfromAtoZ()) {
+                    if (!mFilterStationList.isEmpty()) {
+                        Collections.sort(mFilterStationList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return o1.getTitle().compareToIgnoreCase(o2.getTitle());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    } else {
+                        Collections.sort(mStationsList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return o1.getTitle().compareToIgnoreCase(o2.getTitle());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    }
+
+                } else if (sortStations.isByNamesfromZtoA()) {
+                    if (!mFilterStationList.isEmpty()) {
+                        Collections.sort(mFilterStationList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return o2.getTitle().compareToIgnoreCase(o1.getTitle());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    } else {
+                        Collections.sort(mStationsList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                //double Compare
+                                return o2.getTitle().compareToIgnoreCase(o1.getTitle());
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    }
+
+                } else if (sortStations.isByNearest()) {
+                    if (!mFilterStationList.isEmpty()) {
+                        Collections.sort(mFilterStationList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                double lat1 = o1.getPosition().getLat();
+                                double lon1 = o1.getPosition().getLng();
+                                double lat2 = o2.getPosition().getLat();
+                                double lon2 = o2.getPosition().getLng();
+
+                                double distanceToPlace1 = distance(currentLocationLatitude, currentLocationLongitude, lat1, lon1);
+                                double distanceToPlace2 = distance(currentLocationLatitude, currentLocationLongitude, lat2, lon2);
+                                return (int) (distanceToPlace1 - distanceToPlace2);
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    } else {
+                        Collections.sort(mStationsList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                double lat1 = o1.getPosition().getLat();
+                                double lon1 = o1.getPosition().getLng();
+                                double lat2 = o2.getPosition().getLat();
+                                double lon2 = o2.getPosition().getLng();
+
+                                double distanceToPlace1 = distance(currentLocationLatitude, currentLocationLongitude, lat1, lon1);
+                                double distanceToPlace2 = distance(currentLocationLatitude, currentLocationLongitude, lat2, lon2);
+                                return (int) (distanceToPlace1 - distanceToPlace2);
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    }
+                } else if (sortStations.isByFarthest()) {
+                    if (!mFilterStationList.isEmpty()) {
+                        Collections.sort(mFilterStationList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                double lat1 = o1.getPosition().getLat();
+                                double lon1 = o1.getPosition().getLng();
+                                double lat2 = o2.getPosition().getLat();
+                                double lon2 = o2.getPosition().getLng();
+
+                                double distanceToPlace1 = distance(currentLocationLatitude, currentLocationLongitude, lat1, lon1);
+                                double distanceToPlace2 = distance(currentLocationLatitude, currentLocationLongitude, lat2, lon2);
+                                return (int) (distanceToPlace2 - distanceToPlace1);
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    } else {
+                        Collections.sort(mStationsList, new Comparator<Station>() {
+                            @Override
+                            public int compare(Station o1, Station o2) {
+                                double lat1 = o1.getPosition().getLat();
+                                double lon1 = o1.getPosition().getLng();
+                                double lat2 = o2.getPosition().getLat();
+                                double lon2 = o2.getPosition().getLng();
+
+                                double distanceToPlace1 = distance(currentLocationLatitude, currentLocationLongitude, lat1, lon1);
+                                double distanceToPlace2 = distance(currentLocationLatitude, currentLocationLongitude, lat2, lon2);
+                                return (int) (distanceToPlace2 - distanceToPlace1);
+                            }
+                        });
+                        mRvAdapter.notifyDataSetChanged();
+                    }
                 }
             }
 
             if (!mFilterStationList.isEmpty()) {
                 mRvAdapter = new stationsRecyclerViewAapter(MainActivity.this, mFilterStationList);
                 mRvStationsInfo.setAdapter(mRvAdapter);
-                mRvAdapter.notifyDataSetChanged();
             } else {
                 mRvAdapter = new stationsRecyclerViewAapter(MainActivity.this, mStationsList);
                 mRvStationsInfo.setAdapter(mRvAdapter);
             }
-
-
-            if (sortStations.isByPriceHighest()) {
-                if (!mFilterStationList.isEmpty()) {
-                    //descending تنازلى
-                    Collections.sort(mFilterStationList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return Double.compare(o2.getGas91Price(), o1.getGas91Price());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                } else {
-                    //descending تنازلى
-                    Collections.sort(mStationsList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return Double.compare(o2.getGas91Price(), o1.getGas91Price());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                }
-
-            } else if (sortStations.isByPriceLoweset()) {
-                if (!mFilterStationList.isEmpty()) {
-                    Collections.sort(mFilterStationList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return Double.compare(o1.getGas91Price(), o2.getGas91Price());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                } else {
-                    Collections.sort(mStationsList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return Double.compare(o1.getGas91Price(), o2.getGas91Price());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                }
-
-            } else if (sortStations.isByStarsHighest()) {
-                if (!mFilterStationList.isEmpty()) {
-                    Collections.sort(mFilterStationList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return Double.compare(o2.getRating(), o1.getRating());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                } else {
-                    Collections.sort(mStationsList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return Double.compare(o2.getRating(), o1.getRating());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                }
-
-            } else if (sortStations.isByStarsLowest()) {
-                if (!mFilterStationList.isEmpty()) {
-                    Collections.sort(mFilterStationList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return Double.compare(o1.getRating(), o2.getRating());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                } else {
-                    Collections.sort(mStationsList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return Double.compare(o1.getRating(), o2.getRating());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                }
-
-            } else if (sortStations.isByNamesfromAtoZ()) {
-                if (!mFilterStationList.isEmpty()) {
-                    Collections.sort(mFilterStationList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return o1.getTitle().compareToIgnoreCase(o2.getTitle());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                } else {
-                    Collections.sort(mStationsList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return o1.getTitle().compareToIgnoreCase(o2.getTitle());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                }
-
-            } else if (sortStations.isByNamesfromZtoA()) {
-                if (!mFilterStationList.isEmpty()) {
-                    Collections.sort(mFilterStationList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return o2.getTitle().compareToIgnoreCase(o1.getTitle());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                } else {
-                    Collections.sort(mStationsList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            //double Compare
-                            return o2.getTitle().compareToIgnoreCase(o1.getTitle());
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                }
-
-            } else if (sortStations.isByNearest()) {
-                if (!mFilterStationList.isEmpty()) {
-                    Collections.sort(mFilterStationList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            double lat1 = o1.getPosition().getLat();
-                            double lon1 = o1.getPosition().getLng();
-                            double lat2 = o2.getPosition().getLat();
-                            double lon2 = o2.getPosition().getLng();
-
-                            double distanceToPlace1 = distance(currentLocationLatitude, currentLocationLongitude, lat1, lon1);
-                            double distanceToPlace2 = distance(currentLocationLatitude, currentLocationLongitude, lat2, lon2);
-                            return (int) (distanceToPlace1 - distanceToPlace2);
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                } else {
-                    Collections.sort(mStationsList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            double lat1 = o1.getPosition().getLat();
-                            double lon1 = o1.getPosition().getLng();
-                            double lat2 = o2.getPosition().getLat();
-                            double lon2 = o2.getPosition().getLng();
-
-                            double distanceToPlace1 = distance(currentLocationLatitude, currentLocationLongitude, lat1, lon1);
-                            double distanceToPlace2 = distance(currentLocationLatitude, currentLocationLongitude, lat2, lon2);
-                            return (int) (distanceToPlace1 - distanceToPlace2);
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                }
-            } else if (sortStations.isByFarthest()) {
-                if (!mFilterStationList.isEmpty()) {
-                    Collections.sort(mFilterStationList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            double lat1 = o1.getPosition().getLat();
-                            double lon1 = o1.getPosition().getLng();
-                            double lat2 = o2.getPosition().getLat();
-                            double lon2 = o2.getPosition().getLng();
-
-                            double distanceToPlace1 = distance(currentLocationLatitude, currentLocationLongitude, lat1, lon1);
-                            double distanceToPlace2 = distance(currentLocationLatitude, currentLocationLongitude, lat2, lon2);
-                            return (int) (distanceToPlace2 - distanceToPlace1);
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                } else {
-                    Collections.sort(mStationsList, new Comparator<Station>() {
-                        @Override
-                        public int compare(Station o1, Station o2) {
-                            double lat1 = o1.getPosition().getLat();
-                            double lon1 = o1.getPosition().getLng();
-                            double lat2 = o2.getPosition().getLat();
-                            double lon2 = o2.getPosition().getLng();
-
-                            double distanceToPlace1 = distance(currentLocationLatitude, currentLocationLongitude, lat1, lon1);
-                            double distanceToPlace2 = distance(currentLocationLatitude, currentLocationLongitude, lat2, lon2);
-                            return (int) (distanceToPlace2 - distanceToPlace1);
-                        }
-                    });
-                    mRvAdapter.notifyDataSetChanged();
-                }
-            }
         }
 
-       // findStation.setReturnedFilterStations(returnedFilterStations);
-       // findStation.setReturnedSortStations(returnedSortStations);
     }
 
     public double distance(double fromLat, double fromLon, double toLat, double toLon) {

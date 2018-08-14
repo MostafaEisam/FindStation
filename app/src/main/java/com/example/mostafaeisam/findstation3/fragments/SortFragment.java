@@ -50,15 +50,6 @@ public class SortFragment extends Fragment {
         mRgSort.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                nearest = group.findViewById(R.id.rb_nearest);
-                farthest = group.findViewById(R.id.rb_farthest);
-                priceHighest = group.findViewById(R.id.rb_priceHighest);
-                priceLowest = group.findViewById(R.id.rb_priceLowest);
-                starsHighest = group.findViewById(R.id.rb_starsHighest);
-                starsLowest = group.findViewById(R.id.rb_starsLowest);
-                namesFromAtoZ = group.findViewById(R.id.rb_namesFromAtoZ);
-                namesfromZtoA = group.findViewById(R.id.rb_namesFromZtoA);
-
                 if (nearest.isChecked()){
                     sortStations.setByNearest(true);
                 }else {

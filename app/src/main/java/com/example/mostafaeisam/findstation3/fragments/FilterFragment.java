@@ -53,20 +53,20 @@ public class FilterFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,  Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.filter_fragment,container,false);
-        ButterKnife.bind(this,view);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.filter_fragment, container, false);
+        ButterKnife.bind(this, view);
 
         setPreviousFilters();
 
         mCkGas91.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     filterStations.setCheckedGas91(true);
                     mIvGas91.setImageResource(R.drawable.fuel_91_on);
 
-                }else{
+                } else {
                     filterStations.setCheckedGas91(false);
                     mIvGas91.setImageResource(R.drawable.fuel_91_off);
                 }
@@ -78,10 +78,10 @@ public class FilterFragment extends Fragment {
         mCkGas95.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     filterStations.setCheckedGas95(true);
                     mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                }else{
+                } else {
                     filterStations.setCheckedGas95(false);
                     mIvGas95.setImageResource(R.drawable.fuel_95_off);
                 }
@@ -93,10 +93,10 @@ public class FilterFragment extends Fragment {
         mCkDsl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     filterStations.setCheckedDsl(true);
                     mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                }else{
+                } else {
                     filterStations.setCheckedDsl(false);
                     mIvDsl.setImageResource(R.drawable.fuel_diesel_off);
                 }
@@ -108,9 +108,9 @@ public class FilterFragment extends Fragment {
         mCkRestaurant.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     filterStations.setCheckedRestaurant(true);
-                }else{
+                } else {
                     filterStations.setCheckedRestaurant(false);
                 }
                 FindStation.setFilterStations(filterStations);
@@ -121,9 +121,9 @@ public class FilterFragment extends Fragment {
         mCkMosque.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     filterStations.setCheckedMosque(true);
-                }else{
+                } else {
                     filterStations.setCheckedMosque(false);
                 }
                 FindStation.setFilterStations(filterStations);
@@ -134,9 +134,9 @@ public class FilterFragment extends Fragment {
         mCkCoffee.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     filterStations.setCheckedCoffee(true);
-                }else{
+                } else {
                     filterStations.setCheckedCoffee(false);
                 }
                 FindStation.setFilterStations(filterStations);
@@ -147,9 +147,9 @@ public class FilterFragment extends Fragment {
         mCkWomenToilet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     filterStations.setCheckedWomenToilet(true);
-                }else{
+                } else {
                     filterStations.setCheckedWomenToilet(false);
                 }
                 FindStation.setFilterStations(filterStations);
@@ -160,9 +160,9 @@ public class FilterFragment extends Fragment {
         mCkMenToilet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     filterStations.setCheckedMenToilet(true);
-                }else{
+                } else {
                     filterStations.setCheckedMenToilet(false);
                 }
                 FindStation.setFilterStations(filterStations);
@@ -173,9 +173,9 @@ public class FilterFragment extends Fragment {
         mCkHotel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     filterStations.setCheckedHotel(true);
-                }else{
+                } else {
                     filterStations.setCheckedHotel(false);
                 }
                 FindStation.setFilterStations(filterStations);
@@ -186,9 +186,9 @@ public class FilterFragment extends Fragment {
         mCkATM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (buttonView.isChecked()){
+                if (buttonView.isChecked()) {
                     filterStations.setCheckedATM(true);
-                }else{
+                } else {
                     filterStations.setCheckedATM(false);
                 }
                 FindStation.setFilterStations(filterStations);
@@ -196,682 +196,55 @@ public class FilterFragment extends Fragment {
             }
         });
 
-        //FindStation.setFilterStations(filterStations);
-
         return view;
 
     }
 
     private void setPreviousFilters() {
 
-        if (FindStation.getFilterStations()!=null)
-        {
-            FilterStations filterStationsPrev = FindStation.getFilterStations();
-            if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedMosque() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedWomenToilet() && filterStationsPrev.isCheckedMenToilet()
-                    && filterStationsPrev.isCheckedHotel() && filterStationsPrev.isCheckedATM()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkRestaurant.setChecked(true);
-                mCkMosque.setChecked(true);
-                mCkCoffee.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-                mCkMenToilet.setChecked(true);
-                mCkHotel.setChecked(true);
-                mCkATM.setChecked(true);
+        if (FindStation.getFilterStations() != null) {
+            filterStations = FindStation.getFilterStations();
 
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedMosque() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedWomenToilet() && filterStationsPrev.isCheckedMenToilet()
-                    && filterStationsPrev.isCheckedHotel()){
+             if (filterStations.isCheckedGas91()) {
                 mCkGas91.setChecked(true);
                 mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkRestaurant.setChecked(true);
-                mCkMosque.setChecked(true);
-                mCkCoffee.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-                mCkMenToilet.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if(filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedMosque() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedWomenToilet() && filterStationsPrev.isCheckedMenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkRestaurant.setChecked(true);
-                mCkMosque.setChecked(true);
-                mCkCoffee.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedMosque() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedWomenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkRestaurant.setChecked(true);
-                mCkMosque.setChecked(true);
-                mCkCoffee.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedMosque() && filterStationsPrev.isCheckedCoffee()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkRestaurant.setChecked(true);
-                mCkMosque.setChecked(true);
-                mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedMosque()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkRestaurant.setChecked(true);
-                mCkMosque.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedRestaurant()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkRestaurant.setChecked(true);
             }
-            // Three Filter Choose
-            // Gas91
-            else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedDsl()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
 
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedRestaurant() ){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
+            if (filterStations.isCheckedGas95()) {
                 mCkGas95.setChecked(true);
                 mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkRestaurant.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedMosque()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkMosque.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedCoffee()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedWomenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedMenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedRestaurant()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
+            }
+
+            if (filterStations.isCheckedDsl()) {
                 mCkDsl.setChecked(true);
                 mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkRestaurant.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedMosque()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkMosque.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedCoffee()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedWomenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedMenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedMosque()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkRestaurant.setChecked(true);
-                mCkMosque.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedCoffee()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkRestaurant.setChecked(true);
-                mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedWomenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkRestaurant.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedMenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkRestaurant.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkRestaurant.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkRestaurant.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedMosque()
-                    && filterStationsPrev.isCheckedCoffee()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkMosque.setChecked(true);
-                mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedMosque()
-                    && filterStationsPrev.isCheckedWomenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkMosque.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedMosque()
-                    && filterStationsPrev.isCheckedMenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkMosque.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedMosque()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkMosque.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedMosque()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkMosque.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedWomenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkCoffee.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedMenToilet()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkCoffee.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkCoffee.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkCoffee.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedWomenToilet()
-                    && filterStationsPrev.isCheckedMenToilet() ){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkWomenToilet.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedWomenToilet()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkWomenToilet.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedWomenToilet()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkWomenToilet.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedMenToilet()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkMenToilet.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedMenToilet()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkMenToilet.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedHotel()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkHotel.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedRestaurant()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
+            }
+
+            if (filterStations.isCheckedRestaurant()) {
                 mCkRestaurant.setChecked(true);
             }
-            // Gas95
-            else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedMosque()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
+
+            if (filterStations.isCheckedMosque()) {
                 mCkMosque.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedCoffee()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedWomenToilet()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedMenToilet()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedDsl()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedMosque()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkRestaurant.setChecked(true);
-                mCkMosque.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedCoffee()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkRestaurant.setChecked(true);
-                mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedWomenToilet()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkRestaurant.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedMenToilet()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkRestaurant.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkRestaurant.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedRestaurant()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkRestaurant.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedMosque()
-                    && filterStationsPrev.isCheckedCoffee()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkMosque.setChecked(true);
-                mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedMosque()
-                    && filterStationsPrev.isCheckedWomenToilet()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkMosque.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedMosque()
-                    && filterStationsPrev.isCheckedMenToilet()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkMosque.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedMosque()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkMosque.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedMosque()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkMosque.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedWomenToilet()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkCoffee.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedMenToilet()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkCoffee.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkCoffee.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedCoffee()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkCoffee.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedWomenToilet()
-                    && filterStationsPrev.isCheckedMenToilet()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkWomenToilet.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedWomenToilet()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkWomenToilet.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedWomenToilet()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkWomenToilet.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedMenToilet()
-                    && filterStationsPrev.isCheckedHotel()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkMenToilet.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedMenToilet()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkMenToilet.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedHotel()
-                    && filterStationsPrev.isCheckedATM()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkHotel.setChecked(true);
-                mCkATM.setChecked(true);
             }
-            // Two Filter Choose
-            else if (filterStationsPrev.isCheckedGas91() && filterStationsPrev.isCheckedGas95()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedDsl()) {
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedRestaurant()) {
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkRestaurant.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedMosque()) {
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkMosque.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedCoffee()) {
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
+
+            if(filterStations.isCheckedCoffee()) {
                 mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedWomenToilet()) {
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedHotel()) {
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedGas95() && filterStationsPrev.isCheckedATM()) {
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedRestaurant()) {
-                mCkDsl.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_diesel_on);
-                mCkRestaurant.setChecked(true);
-            }else if (filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedMosque()) {
-                mCkDsl.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_diesel_on);
-                mCkMosque.setChecked(true);
-            }else if (filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedCoffee()) {
-                mCkDsl.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_diesel_on);
-                mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedWomenToilet()) {
-                mCkDsl.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_diesel_on);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedMenToilet()) {
-                mCkDsl.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_diesel_on);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedHotel()) {
-                mCkDsl.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_diesel_on);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedDsl() && filterStationsPrev.isCheckedATM()) {
-                mCkDsl.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_diesel_on);
-                mCkATM.setChecked(true);
             }
-            else if (filterStationsPrev.isCheckedRestaurant() && filterStationsPrev.isCheckedMosque()) {
-                mCkRestaurant.setChecked(true);
-                mCkMosque.setChecked(true);
-            }else if (filterStationsPrev.isCheckedRestaurant() && filterStationsPrev.isCheckedCoffee()) {
-                mCkRestaurant.setChecked(true);
-                mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedRestaurant() && filterStationsPrev.isCheckedWomenToilet()) {
-                mCkRestaurant.setChecked(true);
+
+            if (filterStations.isCheckedWomenToilet()) {
                 mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedRestaurant() && filterStationsPrev.isCheckedMenToilet()) {
-                mCkRestaurant.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedRestaurant() && filterStationsPrev.isCheckedHotel()) {
-                mCkRestaurant.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedRestaurant() && filterStationsPrev.isCheckedATM()) {
-                mCkRestaurant.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedMosque() && filterStationsPrev.isCheckedCoffee()) {
-                mCkMosque.setChecked(true);
-                mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedMosque() && filterStationsPrev.isCheckedWomenToilet()) {
-                mCkMosque.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedMosque() && filterStationsPrev.isCheckedMenToilet()) {
-                mCkMosque.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedMosque() && filterStationsPrev.isCheckedHotel()) {
-                mCkMosque.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedMosque() && filterStationsPrev.isCheckedATM()) {
-                mCkMosque.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedCoffee() && filterStationsPrev.isCheckedWomenToilet()) {
-                mCkCoffee.setChecked(true);
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedCoffee() && filterStationsPrev.isCheckedMenToilet()) {
-                mCkCoffee.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedCoffee() && filterStationsPrev.isCheckedHotel()) {
-                mCkCoffee.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedCoffee() && filterStationsPrev.isCheckedATM()) {
-                mCkCoffee.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedWomenToilet() && filterStationsPrev.isCheckedMenToilet()) {
-                mCkWomenToilet.setChecked(true);
-                mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedWomenToilet() && filterStationsPrev.isCheckedHotel()) {
-                mCkWomenToilet.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedWomenToilet() && filterStationsPrev.isCheckedATM()) {
-                mCkWomenToilet.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedMenToilet() && filterStationsPrev.isCheckedHotel()) {
-                mCkMenToilet.setChecked(true);
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedMenToilet() && filterStationsPrev.isCheckedATM()) {
-                mCkMenToilet.setChecked(true);
-                mCkATM.setChecked(true);
-            }else if (filterStationsPrev.isCheckedHotel() && filterStationsPrev.isCheckedATM()){
-                mCkHotel.setChecked(true);
-                mCkATM.setChecked(true);
             }
-            
-            // One Filter Choose
-            else if (filterStationsPrev.isCheckedGas91()){
-                mCkGas91.setChecked(true);
-                mIvGas91.setImageResource(R.drawable.fuel_91_on);
-            }else if (filterStationsPrev.isCheckedGas95()){
-                mCkGas95.setChecked(true);
-                mIvGas95.setImageResource(R.drawable.fuel_95_on);
-            }else if (filterStationsPrev.isCheckedDsl()){
-                mCkDsl.setChecked(true);
-                mIvDsl.setImageResource(R.drawable.fuel_diesel_on);
-            }else if (filterStationsPrev.isCheckedRestaurant()){
-                mCkRestaurant.setChecked(true);
-            }else if (filterStationsPrev.isCheckedMosque()){
-                mCkMosque.setChecked(true);
-            }else if (filterStationsPrev.isCheckedCoffee()){
-                mCkCoffee.setChecked(true);
-            }else if (filterStationsPrev.isCheckedWomenToilet()){
-                mCkWomenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedMenToilet()){
+
+            if (filterStations.isCheckedMenToilet()) {
                 mCkMenToilet.setChecked(true);
-            }else if (filterStationsPrev.isCheckedHotel()){
+            }
+
+            if (filterStations.isCheckedHotel()) {
                 mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedHotel()){
-                mCkHotel.setChecked(true);
-            }else if (filterStationsPrev.isCheckedATM()){
+            }
+
+            if (filterStations.isCheckedATM()) {
                 mCkATM.setChecked(true);
             }
         }
